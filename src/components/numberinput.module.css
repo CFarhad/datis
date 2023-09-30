@@ -1,0 +1,15 @@
+.label {
+  font-size: var(--mantine-font-size-md);
+  color: #003666;
+  margin-bottom: 4px;
+}
+
+.input {
+  font-size: 40;
+  border-radius: 10px;
+}
+
+.error {
+  font-size: var(--mantine-font-size-xs);
+  color: #fb2047;
+}

@@ -1,0 +1,14 @@
+.root {
+  /* background: white; */
+  border-radius: 10px;
+  padding: 17px 17px;
+  text-align: right;
+  color: #1e202c;
+  stroke: var(--mantine-color-primary);
+  fill: var(--mantine-color-primary);
+  font-weight: 500;
+  &[data-active] {
+    background: linear-gradient(307deg, #076e8a 11.41%, #2393b0 80.64%);
+    color: white;
+  }
+}

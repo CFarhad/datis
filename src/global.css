@@ -1,0 +1,8 @@
+body{
+    font-family: var(--mantine-font-family);
+}
+
+/* Remove input password shower icon in edge */
+input:has(::-ms-reveal,::-ms-clear){
+    display: none;
+}
