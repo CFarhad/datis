@@ -8,7 +8,7 @@ const axiosInstance = axios.create({
     "Content-Type": "application/json",
   },
   responseType: "json",
-  baseURL: "/",
+  baseURL: environment === "production" ? "" : "/api",
   withCredentials: environment === "production",
 });
 

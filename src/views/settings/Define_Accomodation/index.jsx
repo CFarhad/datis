@@ -38,15 +38,17 @@ import Uploader from "../../../components/Uploader";
 import LogoIcon from "@/assets/images/logo_icon.png";
 
 const Define_Accomodation = (props) => {
-  const { data, mutate } = useSend(["/api/define-accomodation", "xyz"]);
+  const { data, mutate } = useSend({
+    url: "/ResidenceInfoCompletionView" 
+  });
 
-  function submitForm(obj) {
-    console.log(obj);
+  function submitForm(values) {
+    mutate(values);
   }
 
   const { t } = useTranslation();
   const form = useForm({
-    validate: yupResolver(MainForm),
+    // validate: yupResolver(MainForm),
     initialValues: {
       accomodation_name: "",
       accomodation_type: "",
@@ -62,7 +64,7 @@ const Define_Accomodation = (props) => {
       address: "",
       file: null,
     },
-    validateInputOnBlur: true,
+
   });
 
   const accomodation_type = [
@@ -160,7 +162,7 @@ const Define_Accomodation = (props) => {
   ];
 
   return (
-    <form onSubmit={form.onSubmit((values) => console.log(values))}>
+    <form onSubmit={form.onSubmit((values) => submitForm(values))}>
       <Container size="xl" mt="lg">
         <Grid gutter="xl">
           <Grid.Col span={{ base: 12, md: 6 }}>
@@ -299,7 +301,7 @@ const Define_Accomodation = (props) => {
           </Grid.Col>
           <Grid.Col span={{ base: 12 }}>
             <Uploader 
-              addUrl="https://jsonplaceholder.typicode.com/posts"
+              addUrl="/ManagementResidenceLogo"
               items={[]}
               maxFiles={1}
               maxSize={200 * 1024 * 1024}

@@ -32,7 +32,7 @@ const theme = createTheme(Theme);
 const browserRoutes = createBrowserRouter(routes);
 
 if (environment !== "production" && appConfig.enableMock) {
-  // mockServer({ environment });
+  mockServer({ environment });
 }
 
 function App() {

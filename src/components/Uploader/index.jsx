@@ -1,28 +1,48 @@
-import { useState, useRef } from "react";
-import { useTranslation } from "react-i18next";
-import { useDropzone } from "react-dropzone";
-import { Notifications } from "@mantine/notifications";
-import { Dropzone } from "@mantine/dropzone";
-import { Box, SimpleGrid } from "@mantine/core";
-import DropzonePreview from "./preview";
+import { useState, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useDropzone } from 'react-dropzone';
+import { notifications } from '@mantine/notifications';
+import { Dropzone,IMAGE_MIME_TYPE } from '@mantine/dropzone';
+import { Box, SimpleGrid } from '@mantine/core';
+import DropzonePreview from './preview';
 
-const Uploader = ({addUrl,deleteUrl,items,setItems,maxFiles,maxSize,children}) => {
+const Uploader = ({
+  addUrl,
+  deleteUrl,
+  items,
+  setItems,
+  maxFiles,
+  maxSize,
+  children,
+}) => {
   const [files, setFiles] = useState([]);
   const { t } = useTranslation();
   const previews = files.map((file, index) => {
-    return <DropzonePreview file={file} key={index} addUrl={addUrl} deleteUrl={deleteUrl}  />;
+    return (
+      <DropzonePreview
+        file={file}
+        key={index}
+        addUrl={addUrl}
+        deleteUrl={deleteUrl}
+      />
+    );
   });
 
   function onDrop(acceptedFiles) {
-    if(acceptedFiles.length > 0){
+    if (acceptedFiles.length <= maxFiles) {
       setFiles([...files, ...acceptedFiles]);
-    }
-    else{
-        notifications.show({
-            title: t(`system_notification`),
-            color: "red",
-            message: t("too-many-files", { files: 1 }),
-        });
+    } else if (files.length > maxFiles) {
+      notifications.show({
+        title: t(`system_notification`),
+        color: 'red',
+        message: t('too-many-files', { files: 1 }),
+      });
+    } else {
+      notifications.show({
+        title: t(`system_notification`),
+        color: 'red',
+        message: t('too-many-files', { files: 1 }),
+      });
     }
   }
 
@@ -30,21 +50,21 @@ const Uploader = ({addUrl,deleteUrl,items,setItems,maxFiles,maxSize,children}) =
   return (
     <>
       <Dropzone
-        // accept={IMAGE_MIME_TYPE}
+        accept={IMAGE_MIME_TYPE}
         maxFiles={maxFiles || 1}
         maxSize={maxSize || 2 * 1024 * 1024} // 2MB
         onReject={(e) => {
           e[0].errors.map((item) => {
-            if (item.code === "too-many-files") {
+            if (item.code === 'too-many-files') {
               notifications.show({
                 title: t(`system_notification`),
-                color: "red",
-                message: t("uploadError", { files: 1 }),
+                color: 'red',
+                message: t('uploadError', { files: 1 }),
               });
             } else {
               notifications.show({
                 title: t(`system_notification`),
-                color: "red",
+                color: 'red',
                 message: t(`${item.code}`),
               });
             }
@@ -52,7 +72,7 @@ const Uploader = ({addUrl,deleteUrl,items,setItems,maxFiles,maxSize,children}) =
         }}
         styles={{
           root: {
-            display: "none",
+            display: 'none',
             border: 0,
           },
         }}
@@ -63,7 +83,7 @@ const Uploader = ({addUrl,deleteUrl,items,setItems,maxFiles,maxSize,children}) =
       <Box onClick={() => openRef.current?.()}>{children}</Box>
       <SimpleGrid
         cols={{ base: 2, xs: 3, sm: 3, md: 4, lg: 6 }}
-        mt={previews.length > 0 ? "xl" : 0}
+        mt={previews.length > 0 ? 'xl' : 0}
       >
         {previews}
       </SimpleGrid>
