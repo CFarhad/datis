@@ -7,8 +7,12 @@
   "close": "بستن",
   "search": "جستجو",
   "submit": "ثبت",
-  "upload_error": "شما فقط می توانید {{files}} فایل آپلود کنید",
+  "uploadError": "شما فقط می توانید {{files}} فایل آپلود کنید",
   "system_notification": "پیام سیستم",
+  "file-invalid-type": "نوع فایل معتبر نیست",
+  "file-too-large": "حجم فایل بیش از حد مجاز است",
+  "file-too-small": "حجم فایل کمتر از حد مجاز است",
+  "too-many-files": "شما فقط می توانید {{maxFiles}} فایل آپلود کنید",
   "fields": {
     "username": "نام کاربری",
     "enter_username": "نام خود را وارد کنید",

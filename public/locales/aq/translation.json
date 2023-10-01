@@ -7,8 +7,12 @@
   "close": "إغلاق",
   "search": "بحث",
   "submit": "إرسال",
-  "upload_error": "يمكنك تحميل {{files}} فقط",
+  "uploadError": "يمكنك تحميل {{files}} فقط",
   "system_notification": "إشعار النظام",
+  "file-invalid-type": "نوع الملف غير صالح",
+  "file-too-large": "الملف كبير جدا",
+  "file-too-small": "الملف صغير جدا",
+  "too-many-files": "يمكنك تحميل {{maxFiles}} فقط",
   "fields": {
     "username": "اسم المستخدم",
     "enter_username": "أدخل اسم المستخدم الخاص بك",

@@ -7,8 +7,12 @@
   "close": "kapat",
   "search": "arama",
   "submit": "gönder",
-  "upload_error": "yalnızca {{files}} dosya yükleyebilirsiniz",
+  "uploadError": "yalnızca {{files}} dosya yükleyebilirsiniz",
   "system_notification": "Sistem Bildirimi",
+  "file-invalid-type": "Dosya türü geçersiz",
+  "file-too-large": "Dosya çok büyük",
+  "file-too-small": "Dosya çok küçük",
+  "too-many-files": "Sadece {{maxFiles}} dosya yükleyebilirsiniz",
   "fields": {
     "username": "Kullanıcı adı",
     "enter_username": "Kullanıcı adınızı giriniz",

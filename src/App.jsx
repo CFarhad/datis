@@ -32,7 +32,7 @@ const theme = createTheme(Theme);
 const browserRoutes = createBrowserRouter(routes);
 
 if (environment !== "production" && appConfig.enableMock) {
-  mockServer({ environment });
+  // mockServer({ environment });
 }
 
 function App() {
@@ -47,7 +47,7 @@ function App() {
           <QueryClientProvider client={queryClient}>
           <ReactQueryDevtools initialIsOpen={false} />
             <DirectionDetector />
-            <Notifications />
+            <Notifications limit={5} />
             <RouterProvider router={browserRoutes} />
           </QueryClientProvider>
         </MantineProvider>

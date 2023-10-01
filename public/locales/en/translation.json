@@ -7,8 +7,12 @@
   "close": "close",
   "search": "search",
   "submit": "submit",
-  "upload_error": "you can upload only {{files}} file",
+  "uploadError": "you can upload only {{files}} file",
   "system_notification": "System Notification",
+  "file-invalid-type": "File type is invalid",
+  "file-too-large": "File is too large",
+  "file-too-small": "File is too small",
+  "too-many-files": "You can upload only {{maxFiles}} files",
   "fields": {
     "username": "Username",
     "enter_username": "Enter your username",
@@ -121,8 +125,8 @@
     "occupation_room": "Occupation Room",
     "havent_cleaned": "Havent Cleaned",
     "maintenance": "Maintenance",
-    "today_entry": "Today Entry",
-    "today_exit": "Today Exit",
+    "today_entry": "Check in",
+    "today_exit": "Check out",
     "garanty": "Garanty",
     "messenger": "Messenger"
   }
