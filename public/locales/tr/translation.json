@@ -52,7 +52,8 @@
     "hotel_features_services": "Otel Özellikleri ve Hizmetleri",
     "hotel_location": "Otel Konumu",
     "hotel_rules": "Otel Kuralları",
-    "multiple_hotels": "Çoklu Oteller"
+    "multiple_hotels": "Çoklu Oteller",
+    "language": "Dil"
   },
   "forms": {
     "accomodation_name": "Konaklama adı",

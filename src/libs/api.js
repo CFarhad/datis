@@ -22,13 +22,13 @@ export function useData(item, params, ...other) {
   });
 }
 
-export function useSend({url, params,axiosOption}) {
+export function useSend({url, params,method="post",axiosOption}) {
   return useMutation({
     mutationKey: url,
     mutationFn: async (bodyData) => {
-      let { data } = await ApiCaller.post(url, bodyData,{
-        data:bodyData
-      });
+      let { data } = await ApiCaller.request(
+        {url,data:bodyData,method:method,params,...axiosOption},
+      );
       return data;
     },
   });

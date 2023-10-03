@@ -3,6 +3,8 @@ import Dashboard from "../../layouts/dashboard";
 import { Anchor } from "@mantine/core";
 const Settings = lazy(() => import("../../views/settings"));
 const Define_Accomodation = lazy(() => import("@/views/settings/Define_Accomodation"))
+const Language = lazy(() => import("@/views/settings/Language"));
+const Features = lazy(() => import("@/views/settings/Features"));
 
 export const PublicRoutes = [
   {
@@ -33,6 +35,16 @@ export const PublicRoutes = [
             title: "menu.define_accomodation",
             path: "/settings/define_accomodation/",
             element: <Define_Accomodation />,
+          },
+          {
+            title: "menu.hotel_features_services",
+            path: "/settings/hotel_features_services/",
+            element: <Features />,
+          },
+          {
+            title: "menu.language",
+            path: "/settings/language/",
+            element: <Language />,
           },
         ],
       },

@@ -52,7 +52,8 @@
     "hotel_features_services": "Hotel Features & Services",
     "hotel_location": "Hotel Location",
     "hotel_rules": "Hotel Rules",
-    "multiple_hotels": "Multiple Hotels"
+    "multiple_hotels": "Multiple Hotels",
+    "language": "Language"
   },
   "forms": {
     "accomodation_name": "Accomodation name",

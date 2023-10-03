@@ -59,6 +59,8 @@ const Define_Accomodation = (props) => {
       call_number: "",
       city_phone_code: "",
       phone_number: "",
+      discharge_time: "",
+      delivery_time: "",
       state: "",
       city: "",
       address: "",
@@ -163,7 +165,7 @@ const Define_Accomodation = (props) => {
 
   return (
     <form onSubmit={form.onSubmit((values) => submitForm(values))}>
-      <Container size="xl" mt="lg">
+      <Container size="xl">
         <Grid gutter="xl">
           <Grid.Col span={{ base: 12, md: 6 }}>
             <TextInput
@@ -198,12 +200,6 @@ const Define_Accomodation = (props) => {
               {...form.getInputProps("accomodation_degree")}
               error={t(form.getInputProps("accomodation_degree").error)}
             />
-            {/* <Combobox
-              placeholder={t("forms.choose")}
-              label={t("forms.accomodation_degree")}
-              {...form.getInputProps("accomodation_degree")}
-              error={t(form.getInputProps("accomodation_degree").error)}
-            ></Combobox> */}
           </Grid.Col>
           <Grid.Col span={{ base: 12, md: 6 }}>
             <TextInput
@@ -227,7 +223,7 @@ const Define_Accomodation = (props) => {
             </Text>
             <Paper shadow="none" withBorder p="lg">
               <Center>
-                <TimePicker />
+                <TimePicker onChange={form.setFieldValue} name="discharge_time" />
               </Center>
             </Paper>
           </Grid.Col>
@@ -237,7 +233,7 @@ const Define_Accomodation = (props) => {
             </Text>
             <Paper shadow="none" withBorder p="lg">
               <Center>
-                <TimePicker />
+                <TimePicker onChange={form.setFieldValue} name="delivery_time" />
               </Center>
             </Paper>
           </Grid.Col>
@@ -301,10 +297,10 @@ const Define_Accomodation = (props) => {
           </Grid.Col>
           <Grid.Col span={{ base: 12 }}>
             <Uploader 
-              addUrl="/ManagementResidenceLogo"
+              url="/ManagementResidenceLogo"
               items={[]}
               maxFiles={1}
-              maxSize={200 * 1024 * 1024}
+              maxSize={6 * 1024 * 1024}
             >
               <Button
                 variant="transparent"

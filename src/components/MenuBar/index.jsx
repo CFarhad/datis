@@ -16,7 +16,8 @@ import { useTranslation } from "react-i18next";
 import styles from "./styles.module.css";
 import { useForceUpdate } from "@mantine/hooks";
 
-const MenuBar = memo(function MenuBar({ routes }) {
+const MenuBar = memo(function MenuBar({ routes,MenuToggle }) {
+
   const { dir } = useDirection();
   const { pathname } = useLocation();
   const params = useParams();
@@ -86,6 +87,7 @@ const MenuBar = memo(function MenuBar({ routes }) {
                         borderRadius: "10px",
                       },
                     })}
+                    onClick={(e) => MenuToggle.close()}
                     key={index2}
                     label={t(`${child.title}`)}
                     active={pathname === child.path ? true : false}
@@ -101,6 +103,7 @@ const MenuBar = memo(function MenuBar({ routes }) {
           return (
             <Box key={index}>
               <NavLink
+              onClick={(e) => MenuToggle.close()}
                 leftSection={route?.icon}
                 classNames={{
                   root: styles.root,

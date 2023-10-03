@@ -64,9 +64,6 @@ const XMap = (props) => {
     setMarkers(markers.filter((mark) => mark.id !== id));
     handlers.toggle();
   }
-  useEffect(() => {
-    console.log("markers", markers);
-  }, [markers]);
   return (
     <Group>
       <MapProvider.Provider

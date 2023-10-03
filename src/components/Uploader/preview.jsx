@@ -8,10 +8,11 @@ import {
   ActionIcon,
 } from '@mantine/core';
 import { memo, useLayoutEffect } from 'react';
-import { useFileUploadMutation } from '../../libs/api';
+import { useFileUploadMutation, useSend } from '../../libs/api';
 import { IconTrash } from '@tabler/icons-react';
 
-const Preview = ({ file, addUrl, deleteUrl, items, setItems }) => {
+const Preview = ({ file, url, deleteUrl, items, setItems }) => {
+  const deleteMutate = useSend({url,method:"DELETE"});
   const [imageUrl, setImageUrl] = useState(null);
   const [success, setSuccess] = useState(true);
   useLayoutEffect(() => {
@@ -20,6 +21,14 @@ const Preview = ({ file, addUrl, deleteUrl, items, setItems }) => {
       setImageUrl(objectUrl);
     }
   }, [file]);
+
+  function deleteFile(){
+    deleteMutate.mutateAsync(null,{
+      onSuccess:() => {
+        console.log("delete success")
+      }
+    })
+  }
 
   return (
     imageUrl !== null && (
@@ -42,7 +51,7 @@ const Preview = ({ file, addUrl, deleteUrl, items, setItems }) => {
         {!success && (
           <Center h="100%">
             <Blur />
-            <Progressive file={file} sendUrl={addUrl} setSuccess={setSuccess} />
+            <Progressive file={file} sendUrl={url} setSuccess={setSuccess} />
           </Center>
         )}
       </BackgroundImage>

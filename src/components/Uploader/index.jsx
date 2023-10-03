@@ -7,7 +7,7 @@ import { Box, SimpleGrid } from '@mantine/core';
 import DropzonePreview from './preview';
 
 const Uploader = ({
-  addUrl,
+  url,
   deleteUrl,
   items,
   setItems,
@@ -22,7 +22,7 @@ const Uploader = ({
       <DropzonePreview
         file={file}
         key={index}
-        addUrl={addUrl}
+        url={url}
         deleteUrl={deleteUrl}
       />
     );

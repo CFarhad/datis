@@ -52,7 +52,8 @@
     "hotel_features_services": "مميزات وخدمات الفندق",
     "hotel_location": "موقع الفندق",
     "hotel_rules": "قواعد الفندق",
-    "multiple_hotels": "قواعد الفندق"
+    "multiple_hotels": "قواعد الفندق",
+    "language": "اللغة"
   },
   "forms": {
     "accomodation_name": "اسم الإقامة",

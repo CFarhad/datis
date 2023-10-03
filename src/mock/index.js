@@ -4,7 +4,7 @@ import appConfig from "../configs/app.config";
 import { signInUserData } from "./data/authData";
 
 import { authFakeApi } from "./fakeApi";
-import {Define_Accomodation} from "./settingsApi"
+import {Define_Accomodation,Features} from "./settingsApi"
 const { apiPrefix } = appConfig;
 
 function mockRunner({environment}) {
@@ -26,6 +26,7 @@ function mockRunner({environment}) {
 
       authFakeApi(this, apiPrefix);
       Define_Accomodation(this,apiPrefix)
+      Features(this,apiPrefix);
     },
   });
 }
