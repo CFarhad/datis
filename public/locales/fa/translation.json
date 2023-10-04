@@ -7,6 +7,8 @@
   "close": "بستن",
   "search": "جستجو",
   "submit": "ثبت",
+  "new": "جدید",
+  "location": "مکان",
   "uploadError": "شما فقط می توانید {{files}} فایل آپلود کنید",
   "system_notification": "پیام سیستم",
   "file-invalid-type": "نوع فایل معتبر نیست",
@@ -53,7 +55,8 @@
     "hotel_location": "لوکیشن هتل",
     "hotel_rules": "قوانین هتل",
     "multiple_hotels": "هتل های زنجیره ای",
-    "language": "زبان"
+    "language": "زبان",
+    "distance_to_places": "فاصله تا اماکن"
   },
   "forms": {
     "accomodation_name": "نام اقامتگاه",
@@ -130,5 +133,8 @@
     "today_exit": "خروجی امروز",
     "garanty": "گارانتی",
     "messenger": "پیامرسان"
+  },
+  "distance_to_places": {
+    "important_places_around_hotel": "مکان های مهم اطراف هتل"
   }
 }

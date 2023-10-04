@@ -7,6 +7,8 @@
   "close": "kapat",
   "search": "arama",
   "submit": "gönder",
+  "new": "yeni",
+  "location": "yer",
   "uploadError": "yalnızca {{files}} dosya yükleyebilirsiniz",
   "system_notification": "Sistem Bildirimi",
   "file-invalid-type": "Dosya türü geçersiz",
@@ -53,7 +55,8 @@
     "hotel_location": "Otel Konumu",
     "hotel_rules": "Otel Kuralları",
     "multiple_hotels": "Çoklu Oteller",
-    "language": "Dil"
+    "language": "Dil",
+    "distance_to_places": "Yerlere Uzaklık"
   },
   "forms": {
     "accomodation_name": "Konaklama adı",
@@ -130,5 +133,8 @@
     "today_exit": "Bugün Çıkış",
     "garanty": "Garanti",
     "messenger": "Elçi"
+  },
+  "distance_to_places": {
+    "important_places_around_hotel": "Otelin Çevresindeki Önemli Yerler"
   }
 }

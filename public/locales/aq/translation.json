@@ -7,6 +7,8 @@
   "close": "إغلاق",
   "search": "بحث",
   "submit": "إرسال",
+  "new": "جديد",
+  "location": "موقع",
   "uploadError": "يمكنك تحميل {{files}} فقط",
   "system_notification": "إشعار النظام",
   "file-invalid-type": "نوع الملف غير صالح",
@@ -53,7 +55,8 @@
     "hotel_location": "موقع الفندق",
     "hotel_rules": "قواعد الفندق",
     "multiple_hotels": "قواعد الفندق",
-    "language": "اللغة"
+    "language": "اللغة",
+    "distance_to_places": "مسافة إلى الأماكن"
   },
   "forms": {
     "accomodation_name": "اسم الإقامة",
@@ -130,5 +133,8 @@
     "today_exit": "خروج اليوم",
     "garanty": "ضمان",
     "messenger": "رسول"
+  },
+  "distance_to_places": {
+    "important_places_around_hotel": "الأماكن المهمة حول الفندق"
   }
 }

@@ -7,6 +7,8 @@
   "close": "close",
   "search": "search",
   "submit": "submit",
+  "new": "new",
+  "location": "location",
   "uploadError": "you can upload only {{files}} file",
   "system_notification": "System Notification",
   "file-invalid-type": "File type is invalid",
@@ -53,7 +55,8 @@
     "hotel_location": "Hotel Location",
     "hotel_rules": "Hotel Rules",
     "multiple_hotels": "Multiple Hotels",
-    "language": "Language"
+    "language": "Language",
+    "distance_to_places": "Distance to Places"
   },
   "forms": {
     "accomodation_name": "Accomodation name",
@@ -130,5 +133,8 @@
     "today_exit": "Check out",
     "garanty": "Garanty",
     "messenger": "Messenger"
+  },
+  "distance_to_places": {
+    "important_places_around_hotel": "Important Places Around Hotel"
   }
 }
