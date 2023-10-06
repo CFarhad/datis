@@ -36,15 +36,69 @@ import { MainForm } from "./validation";
 import { Icon123, IconThumbUp } from "@tabler/icons-react";
 import Uploader from "../../../components/Uploader";
 import LogoIcon from "@/assets/images/logo_icon.png";
+import { Cookies } from "react-cookie";
 
 const Define_Accomodation = (props) => {
-  const { data, mutate } = useSend({
-    url: "/ResidenceInfoCompletionView" 
+  const { mutateAsync } = useSend({
+    url: "ResidenceInfoCompletionView/" 
   });
+  const accomodationFields = useData({url: "https://jsonplaceholder.typicode.com/posts//"});
+
+  console.log(accomodationFields.data)
+
+  // useEffect(() => {
+  //   if(!accomodationFields.isLoading){
+  //     console.log(accomodationFields.data)
+  //   }
+  // },[accomodationFields.isLoading])
 
   function submitForm(values) {
-    mutate(values);
+    let sendForm = {
+      name_of_residence: values.accomodation_name,
+      type_residence: values.accomodation_type,
+      degree_residence: values.accomodation_degree,
+      state: values.state,
+      city: values.city,
+      address: values.address,
+      phone_number: values.call_number,
+      mobile_phone_number: values.phone_number,
+      website_address: values.website_address,
+      room_delivery_time: values.delivery_time,
+      room_checkout_time: values.discharge_time,
+      floor_count: values.accomodation_floors,
+      construction_date: values.accomodation_create_date,
+      Language: "فارسی"
+    }
+    mutateAsync(sendForm,{
+       onSuccess: (data) => {
+          console.log(data)
+       }
+    })
   }
+
+  // useEffect(() => {
+  //   if(!accomodationFields.isLoading){
+  //     form.setValues({
+  //       accomodation_name: accomodationFields.data.name_of_residence,
+  //       accomodation_type: accomodationFields.data.type_residence,
+  //       website_address: accomodationFields.data.website_address,
+  //       accomodation_degree: accomodationFields.data.degree_residence,
+  //       accomodation_create_date: accomodationFields.data.construction_date,
+  //       accomodation_floors: accomodationFields.data.floor_count,
+  //       call_number: accomodationFields.data.phone_number,
+  //       city_phone_code: "",
+  //       phone_number: accomodationFields.data.mobile_phone_number,
+  //       discharge_time: accomodationFields.data.room_checkout_time,
+  //       delivery_time: accomodationFields.data.room_delivery_time,
+  //       state: accomodationFields.data.state,
+  //       city: accomodationFields.data.city,
+  //       address: accomodationFields.data.address,
+  //       file: null,
+  //     })
+  //   }
+  // },[accomodationFields.isLoading])
+
+  
 
   const { t } = useTranslation();
   const form = useForm({
@@ -66,8 +120,7 @@ const Define_Accomodation = (props) => {
       address: "",
       file: null,
     },
-
-  });
+  }); 
 
   const accomodation_type = [
     { value: "1", label: t("define_accomodation.accomodation_type.hotel") },
@@ -226,6 +279,7 @@ const Define_Accomodation = (props) => {
                 <TimePicker onChange={form.setFieldValue} name="discharge_time" />
               </Center>
             </Paper>
+            <Text size="xs" c="error">{t(form.getInputProps("discharge_time").error)}</Text>
           </Grid.Col>
           <Grid.Col span={{ base: 12, md: 6 }}>
             <Text classNames={{ root: InputClasess.label }}>
@@ -236,6 +290,7 @@ const Define_Accomodation = (props) => {
                 <TimePicker onChange={form.setFieldValue} name="delivery_time" />
               </Center>
             </Paper>
+            <Text size="xs" c="error">{t(form.getInputProps("delivery_time").error)}</Text>
           </Grid.Col>
           <Grid.Col span={{ base: 12, md: 6 }}>
             <Group wrap="nowrap">
@@ -290,11 +345,11 @@ const Define_Accomodation = (props) => {
               error={t(form.getInputProps("address").error)}
             />
           </Grid.Col>
-          <Grid.Col>
+          {/* <Grid.Col>
             <Paper withBorder p="lg">
               <XMap />
             </Paper>
-          </Grid.Col>
+          </Grid.Col> */}
           <Grid.Col span={{ base: 12 }}>
             <Uploader 
               url="/ManagementResidenceLogo"

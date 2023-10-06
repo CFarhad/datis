@@ -1,7 +1,8 @@
-import { PasswordInput, Select, TextInput, Textarea,NumberInput,InputLabel } from "@mantine/core";
+import { PasswordInput, Select, TextInput, Textarea,NumberInput,InputLabel,Checkbox } from "@mantine/core";
 import InputClasses from "../components/input.module.css";
 import NumberInputClasses from "../components/numberinput.module.css";
 import SelectClasses from "@/components/select.module.css";
+import CheckBoxClasses from "@/components/checkbox.module.css";
 
 
 export const Theme = {
@@ -94,6 +95,14 @@ export const Theme = {
     ],
   },
   components: {
+    Checkbox: Checkbox.extend({
+      defaultProps:{
+        radius:"sm"
+      },
+      classNames:{
+        label:CheckBoxClasses.label
+      }
+    }),
     TextInput: TextInput.extend({
       defaultProps: {
         size: "lg",

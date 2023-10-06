@@ -26,15 +26,12 @@ import { Suspense } from "react";
 import { PublicRoutes } from "../../routes/public";
 import MenuBar from "../../components/MenuBar";
 import XBreadcrumbs from "../../components/Breadcrumbs";
-import {
-  IconChevronLeft,
-  IconChevronRight,
-} from "@tabler/icons-react";
+import { IconChevronLeft, IconChevronRight } from "@tabler/icons-react";
 import { useTranslation } from "react-i18next";
 import { TopHeader } from "@/components";
-import {SearchIcon} from "@/components";
+import { SearchIcon } from "@/components";
 
-function Dashboard() {
+function Dashboard(props) {
   const { dir } = useDirection();
   const [opened, menuToggler] = useDisclosure();
   const routes = PublicRoutes[0].children;
@@ -51,20 +48,22 @@ function Dashboard() {
       <AppShell.Header>
         <TopHeader menuToggler={menuToggler} opened={opened} />
       </AppShell.Header>
-      <AppShell.Navbar p="md">
-        <Burger opened={opened} onClick={() => menuToggler.toggle()} hiddenFrom="md" size="sm" />
-        <Box pos="absolute" left={10} top={10}></Box>
-        <Center>
-          <Link to="/">
-            <Image h={61} src={logo} />
-          </Link>
-        </Center>
-        <AppShell.Section grow my="md" component={ScrollArea}>
+      <AppShell.Navbar p="md" pt={0}>
+        <Burger
+          opened={opened}
+          onClick={() => menuToggler.toggle()}
+          hiddenFrom="md"
+          size="sm"
+        />
+        <Box h={{ base: 180, md: 120 }} display="flex" style={{alignItems:"center",justifyContent:"center"}}>
+        <Link to="/">
+              <Image h={61} src={logo} />
+            </Link>
+        </Box>
+        <AppShell.Section grow my="md" mt={0} component={ScrollArea}>
           <MenuBar routes={routes} MenuToggle={menuToggler} />
         </AppShell.Section>
-        <AppShell.Section>
-          {/* PROFILE */}
-        </AppShell.Section>
+        <AppShell.Section>{/* PROFILE */}</AppShell.Section>
       </AppShell.Navbar>
       <AppShell.Main h="100vh">
         <Suspense
@@ -91,8 +90,8 @@ function Dashboard() {
             <Input
               visibleFrom="md"
               styles={{
-                input:{
-                  fontSize:"12px"
+                input: {
+                  fontSize: "12px",
                 },
                 wrapper: {
                   boxShadow: "0px 0px 8px 0px rgba(8, 117, 146, 0.30)",
@@ -101,11 +100,15 @@ function Dashboard() {
               }}
               w="300"
               size="md"
-              rightSection={<ActionIcon variant="white" style={{cursor:"pointer"}}><SearchIcon /></ActionIcon>}
+              rightSection={
+                <ActionIcon variant="white" style={{ cursor: "pointer" }}>
+                  <SearchIcon />
+                </ActionIcon>
+              }
               placeholder={t("forms.quick_search")}
             />
           </Flex>
-          <Container size="xl" mt="lg" pb="xl">
+          <Container size="xl" mt="37.45px" pb="xl">
             <Outlet />
           </Container>
         </Suspense>

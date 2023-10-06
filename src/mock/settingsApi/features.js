@@ -9,4 +9,11 @@ export default function Features(server, apiPrefix) {
       };
     }
   );
+  server.get(`${apiPrefix}/hotelfeatureslists`, (schema, { requestBody }) => {
+    let data = schema.db.facilitiesList;
+    return {
+      message: "success",
+      data,
+    };
+  });
 }

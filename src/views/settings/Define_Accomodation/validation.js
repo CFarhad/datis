@@ -19,4 +19,9 @@ export const MainForm = yup.object().shape({
   state: yup.string().required("fields.errors.required"),
   city: yup.string().required("fields.errors.required"),
   address: yup.string().required("fields.errors.required"),
+  discharge_time: yup.string().required("fields.errors.required").matches(/^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/, "fields.errors.pattern"),
+  delivery_time: yup.string().required("fields.errors.required").matches(/^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/, "fields.errors.pattern"),
 });
+
+
+

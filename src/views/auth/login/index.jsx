@@ -19,8 +19,14 @@ import logo from "../../../assets/images/logo.png";
 import { useForm } from "@mantine/form";
 import Language from "@/components/Language";
 import { useTranslation } from "react-i18next";
+import {useSend} from "../../../libs/api";
+import { useCookies } from "react-cookie";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const {isLoading,mutateAsync} = useSend({url: "Login/"});
+  const navigate = useNavigate();
+  const [cookies,setCookie] = useCookies(['user'])
   const { t, i18n } = useTranslation();
   const { dir } = useDirection();
   const form = useForm({
@@ -34,7 +40,26 @@ const Login = () => {
       password: (value) =>
         value.length === 0 ? "fields.errors.userpass_error" : null,
     },
+    clearInputErrorOnChange: true,
   });
+
+  function submitForm(values){
+    let formData = {
+      UserName: values.username,
+      Password: values.password
+    }
+    mutateAsync(formData,{
+      onSuccess: (data) => {
+        setCookie("user",data?.Data.Authorization);
+        navigate("/",{replace: true});
+      },
+      onError: (error) => {
+        form.setFieldError("username",t(error.response.data.message))
+        form.setFieldError("password",t(error.response.data.message))
+      }
+    })
+  }
+
   return (
     <div>
       <Helmet>
@@ -53,7 +78,7 @@ const Login = () => {
                 >
                   <Language />
                 </Box>
-                <form onSubmit={form.onSubmit(console.log)}>
+                <form onSubmit={form.onSubmit((values) => submitForm(values))}>
                   <Flex
                     direction="column"
                     w={{ base: "330px", lg: 420 }}
@@ -106,6 +131,7 @@ const Login = () => {
                       {t("fields.forget_pass")}
                     </Anchor>
                     <Button
+                      loading={isLoading}
                       type="submit"
                       color="primary"
                       w={{base:"100%",lg:200}}

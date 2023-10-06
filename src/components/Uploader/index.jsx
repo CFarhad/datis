@@ -24,6 +24,7 @@ const Uploader = ({
         key={index}
         url={url}
         deleteUrl={deleteUrl}
+        setItems={setFiles}
       />
     );
   });

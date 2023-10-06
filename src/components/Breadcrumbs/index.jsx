@@ -15,6 +15,8 @@ const Breadcrumbs = ({ routes }) => {
   return breadcrumbs.map(({ match, breadcrumb }, index) => (
     <Anchor
       fw={index === 0 ? "bold" : null}
+      fz={index === 0 ? "22px" : "sm"}
+      underline="never"
       key={index}
       component={NavLink}
       to={match.pathname}

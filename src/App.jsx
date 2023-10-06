@@ -14,14 +14,15 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import routes from "./routes";
 import "./global.css";
 import "@mantine/dropzone/styles.css";
-import "./i18n";
 import { useEffect, useLayoutEffect } from "react";
 import { DirectionDetector } from "./libs";
 import mockServer from "./mock";
 import appConfig from "@/configs/app.config.js";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { queryClientConfig } from "./libs/api";
+import { CookiesProvider } from "react-cookie";
+import i18next from "./i18n";
 
 
 const queryClient = new QueryClient(queryClientConfig);
@@ -32,10 +33,11 @@ const theme = createTheme(Theme);
 const browserRoutes = createBrowserRouter(routes);
 
 if (environment !== "production" && appConfig.enableMock) {
-  mockServer({ environment });
+  // mockServer({ environment });
 }
 
 function App() {
+  // const [newSetDirection] = useQueryParams("direction");
   useLayoutEffect(() => {
     DirectionDetector();
   }, []);
@@ -45,10 +47,12 @@ function App() {
       <DirectionProvider initialDirection="ltr" detectDirection={true}>
         <MantineProvider theme={theme}>
           <QueryClientProvider client={queryClient}>
-          <ReactQueryDevtools initialIsOpen={false} />
-            <DirectionDetector />
-            <Notifications limit={5} />
-            <RouterProvider router={browserRoutes} />
+            <ReactQueryDevtools initialIsOpen={false} />
+            <CookiesProvider defaultSetOptions={{path:'/'}}>
+              <DirectionDetector />
+              <Notifications limit={5} />
+              <RouterProvider router={browserRoutes} />
+            </CookiesProvider>
           </QueryClientProvider>
         </MantineProvider>
       </DirectionProvider>

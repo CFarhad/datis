@@ -20,7 +20,7 @@ const TimePicker = ({name,onChange}) => {
   const [time, setTime] = useState({ hour: "", minute: "" });
 
   function minuteBlur(e) {
-    if(!Number.isInteger(+e.target.value)) return setTime({ ...time, minute: "" });
+    if(!Number.isInteger(+e.target.value)) return setTime({ ...time, minute: "00" });
     let val = time.minute;
     // if val is less than 10 add zero prev it and if it has a zero dont do that
     if (val < 10 && val.length === 1) {
@@ -39,7 +39,7 @@ const TimePicker = ({name,onChange}) => {
 
   //   create hourBlur function
   function hourBlur(e) {
-    if(!Number.isInteger(+e.target.value)) return setTime({ ...time, hour: "" });
+    if(!Number.isInteger(+e.target.value)) return setTime({ ...time, hour: "00" });
     let val = time.hour;
     // if val is less than 10 add zero prev it and if it has a zero dont do that
     if (val < 10 && val.length === 1) {

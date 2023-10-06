@@ -4,21 +4,19 @@ import { notifications } from "@mantine/notifications";
 import ApiCaller from "../libs/axiosEndpoint";
 import axios, { AxiosError } from "axios";
 
-export function useData(item, params, ...other) {
+export function useData({url, params,axiosOption, queryOptions}) {
   return useQuery({
-    queryKey: item,
+    queryKey: [url],
     queryFn: async () => {
-      let { data } = await ApiCaller.get(item[0]);
-      return data;
+      let { data } = await ApiCaller.get(url, { params, ...axiosOption });
+      return data?.Data;
     },
-    staleTime: 0,
+    staleTime: 1000 * 30,
     refetchInterval: 0,
-    cacheTime: 0,
-    meta: { err: 123 },
     retry: 2,
     retryOnMount: false,
     refetchOnWindowFocus: false,
-    ...other,
+    ...queryOptions
   });
 }
 
@@ -31,6 +29,7 @@ export function useSend({url, params,method="post",axiosOption}) {
       );
       return data;
     },
+    retry: false
   });
 }
 

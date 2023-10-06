@@ -1,24 +1,25 @@
 import { Server, Response } from 'miragejs'
 
 export default function authFakeApi(server, apiPrefix) {
-  server.post(`${apiPrefix}/sign-in`, (schema, { requestBody }) => {
-    const { userName, password } = JSON.parse(requestBody);
+  server.post(`${apiPrefix}/login`, (schema, { requestBody }) => {
+    const { username, password } = JSON.parse(requestBody);
     const user = schema.db.signInUserData.findBy({
-      accountUserName: userName,
+      accountUserName: username,
       password,
     });
-    console.log("user", user);
+
     if (user) {
-      const { avatar, userName, email, authority } = user;
+      const { avatar, username, email, authority } = user;
       return {
-        user: { avatar, userName, email, authority },
-        token: "wVYrxaeNa9OxdnULvde1Au5m5w63",
+        user: { avatar, username, email, authority },
+        token: "TOKEN wVYrxaeNa9OxdnULvde1Au5m5w63",
+        maxAge: 30 * 24 * 60 * 60,
       };
     }
     return new Response(
       401,
       { some: "header" },
-      { message: "Invalid email or password!" }
+      { message: "fields.errors.userpass_error" }
     );
   });
 }

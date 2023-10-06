@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 import {
   BackgroundImage,
   Box,
@@ -6,15 +6,15 @@ import {
   Center,
   RingProgress,
   ActionIcon,
-} from '@mantine/core';
-import { memo, useLayoutEffect } from 'react';
-import { useFileUploadMutation, useSend } from '../../libs/api';
-import { IconTrash } from '@tabler/icons-react';
+} from "@mantine/core";
+import { memo, useLayoutEffect } from "react";
+import { useFileUploadMutation, useSend } from "../../libs/api";
+import { IconTrash } from "@tabler/icons-react";
 
 const Preview = ({ file, url, deleteUrl, items, setItems }) => {
-  const deleteMutate = useSend({url,method:"DELETE"});
+  const deleteMutate = useSend({ url, method: "DELETE" });
   const [imageUrl, setImageUrl] = useState(null);
-  const [success, setSuccess] = useState(true);
+  const [success, setSuccess] = useState(false);
   useLayoutEffect(() => {
     if (file) {
       const objectUrl = URL.createObjectURL(file);
@@ -22,19 +22,19 @@ const Preview = ({ file, url, deleteUrl, items, setItems }) => {
     }
   }, [file]);
 
-  function deleteFile(){
-    deleteMutate.mutateAsync(null,{
-      onSuccess:() => {
-        console.log("delete success")
-      }
-    })
+  function deleteFile() {
+    deleteMutate.mutateAsync(null, {
+      onSuccess: () => {
+        setItems(item => item.filter(item => item !== file));
+      },
+    });
   }
 
   return (
     imageUrl !== null && (
       <BackgroundImage
         pos="relative"
-        style={{ overflow: 'hidden' }}
+        style={{ overflow: "hidden" }}
         w={140}
         h={145}
         radius="lg"
@@ -43,7 +43,7 @@ const Preview = ({ file, url, deleteUrl, items, setItems }) => {
       >
         {success && (
           <Box pos="absolute" top={7} right={7}>
-            <ActionIcon  w={30} h={30} radius="xl" color='dark'>
+            <ActionIcon w={30} h={30} radius="xl" color="dark" onClick={() => deleteFile()} loading={deleteMutate.isLoading}>
               <IconTrash size={20} />
             </ActionIcon>
           </Box>
@@ -66,26 +66,30 @@ const Blur = memo(function Blur() {
       w="100%"
       h="100%"
       bg="rgba(255,255,255,0.3)"
-      style={{ backdropFilter: 'blur(10px)', zIndex: 4 }}
+      style={{ backdropFilter: "blur(10px)", zIndex: 4 }}
     />
   );
 });
 
 const Progressive = memo(function Progressive(props) {
-  const { mutate, progress, isSuccess } = useFileUploadMutation(props.sendUrl);
+  const { mutateAsync, progress, isSuccess } = useFileUploadMutation(
+    props.sendUrl
+  );
   useEffect(() => {
     let form = new FormData();
-    form.append('file', props.file);
-    mutate(form);
+    form.append("file", props.file);
+    mutateAsync(form, {
+      onSuccess: (data) => {
+        console.log(isSuccess)
+        if (isSuccess) props.setSuccess(isSuccess);
+      },
+    });
   }, []);
 
-  useEffect(() => {
-    if (isSuccess) props.setSuccess(isSuccess);
-  }, [isSuccess]);
   return (
     <RingProgress
       style={{ zIndex: 6 }}
-      sections={[{ value: progress || 0, color: 'primary' }]}
+      sections={[{ value: progress || 0, color: "primary" }]}
       label={
         <Center>
           <Text c="black" fw={700} ta="center" size="xl">

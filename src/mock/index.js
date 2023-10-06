@@ -2,6 +2,7 @@ import { createServer } from "miragejs";
 import appConfig from "../configs/app.config";
 
 import { signInUserData } from "./data/authData";
+import {facilitiesList,define_accomodation} from "./data/settings";
 
 import { authFakeApi } from "./fakeApi";
 import {Define_Accomodation,Features} from "./settingsApi"
@@ -13,6 +14,8 @@ function mockRunner({environment}) {
     seeds(server) {
       server.db.loadData({
         signInUserData,
+        facilitiesList,
+        define_accomodation
       });
     },
     routes() {

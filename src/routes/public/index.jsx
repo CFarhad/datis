@@ -1,11 +1,6 @@
 import { lazy } from "react";
 import Dashboard from "../../layouts/dashboard";
-import { Anchor } from "@mantine/core";
-const Settings = lazy(() => import("../../views/settings"));
 const Define_Accomodation = lazy(() => import("@/views/settings/Define_Accomodation"))
-const Language = lazy(() => import("@/views/settings/Language"));
-const Features = lazy(() => import("@/views/settings/Features"));
-const DistanceToPlaces = lazy(() => import("@/views/settings/DistanceToPlaces"));
 
 export const PublicRoutes = [
   {
@@ -35,21 +30,6 @@ export const PublicRoutes = [
             title: "menu.define_accomodation",
             path: "/settings/define_accomodation/",
             element: <Define_Accomodation />,
-          },
-          {
-            title: "menu.hotel_features_services",
-            path: "/settings/hotel_features_services/",
-            element: <Features />,
-          },
-          {
-            title: "menu.distance_to_places",
-            path: "/settings/distance_to_places/",
-            element: <DistanceToPlaces />,
-          },
-          {
-            title: "menu.language",
-            path: "/settings/language/",
-            element: <Language />,
           },
         ],
       },
